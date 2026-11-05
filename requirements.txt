@@ -1,0 +1,9 @@
+matplotlib
+numpy
+sqlalchemy
+python-dotenv
+psycopg[binary]
+plotly-express
+plotly
+pandas
+pandas-stubs

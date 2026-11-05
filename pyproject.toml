@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teacherEvaluation"
+version = "0.0.1"
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+    "sqlalchemy>=2.0.54",
+    "plotly-express>=0.4.1",
+    "plotly>=7.1.0"
+]
+
+#[project.scripts]
+#notecli = "TeacherEvaluation.main"
+
+#[tool.setuptools.packages.find]
+#where = ["."]
+#include = ["notecli*"]
