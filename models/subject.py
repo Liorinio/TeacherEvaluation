@@ -14,3 +14,9 @@ class Subject:
 
     def set_subject_name(self, subject_name: str):
         self.subject_name = subject_name
+
+    def __str__(self) -> str:
+        return (
+                f"subject id: {self.subject_id}, "
+                f"subject name: {self.subject_name}"
+                )

@@ -36,5 +36,14 @@ class TestGrade:
     def get_score(self):
         return self.score
 
+    def __str__(self) -> str:
+        return (
+                f"student id: {self.student_id}, "
+                f"test name: {self.test_name}, "
+                f"score: {self.score}, "
+                f"comments: {self.comments}, "
+                f"test date: {self.test_date}"
+                )
+
 
 

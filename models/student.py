@@ -24,3 +24,11 @@ class Student:
 
     def set_grade_level(self, grade_level: str):
         self.grade_level = grade_level
+
+    def __str__(self) -> str:
+        return (
+                f"student id: {self.student_id}, "
+                f"student name: {self.student_name}, "
+                f"grade level: {self.grade_level}, "
+                f"enroll date: {self.enroll_date}"
+                )

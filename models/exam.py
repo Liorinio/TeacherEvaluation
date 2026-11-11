@@ -24,3 +24,11 @@ class Exam:
 
     def set_test_title(self, title: str):
         self.test_title = title
+
+    def __str__(self) -> str:
+        return (
+                f"test id: {self.test_id}, "
+                f"subject id: {self.subject_id}, "
+                f"test title: {self.test_title}, "
+                f"test date: {self.test_date}"
+                )
