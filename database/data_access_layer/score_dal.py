@@ -16,7 +16,7 @@ class ScoreDAL:
         existing_score = self.db.query(TestGrade).filter_by(student_id=grade.student_id).filter_by(test_name=grade.test_name).first()
 
         if existing_score:
-            raise ValueError("The student is already in the data-storage")
+            raise ValueError("The grade is already in the data-storage")
 
         self.db.add(grade)
         self.db.commit()

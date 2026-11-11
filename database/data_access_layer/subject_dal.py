@@ -15,7 +15,7 @@ class SubjectDAL:
         existing_subject = self.db.query(Subject).filter_by(student_id=subject.subject_id).first()
 
         if existing_subject:
-            raise ValueError("The student is already in the data-storage")
+            raise ValueError("The subject is already in the data-storage")
 
         self.db.add(subject)
         self.db.commit()

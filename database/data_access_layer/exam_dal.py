@@ -16,7 +16,7 @@ class ExamDAL:
         existing_subject = self.db.query(Exam).filter_by(test_title=exam.test_title).first()
 
         if existing_subject:
-            raise ValueError("The student is already in the data-storage")
+            raise ValueError("The exam is already in the data-storage")
 
         self.db.add(exam)
         self.db.commit()
