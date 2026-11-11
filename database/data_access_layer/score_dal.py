@@ -7,7 +7,12 @@ class ScoreDAL:
     def __init__(self, db: Session):
         self.db = db
 
-    def delete_exam_by_id(self, test_name, student_id):
+    def delete_score_by_id(self, test_name, student_id):
+        existing_score = self.db.query().filter_by(test_name=test_name).filter_by(student_id=student_id).first()
+
+        if not existing_score:
+            raise ValueError("The score is already deleted from the database")
+
         stmt = delete(TestGrade).where(TestGrade.test_name==test_name).where(TestGrade.student_id==student_id)
         self.db.execute(stmt)
         self.db.commit()

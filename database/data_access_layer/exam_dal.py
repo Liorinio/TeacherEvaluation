@@ -7,8 +7,13 @@ class ExamDAL:
     def __init__(self, db: Session):
         self.db = db
 
-    def delete_exam_by_id(self, test_title):
-        stmt = delete(Exam).where(Exam.test_title==test_title)
+    def delete_exam_by_id(self, test_title, test_id):
+        existing_subject = self.db.query(Exam).filter_by(test_title=test_title).filter_by(test_id=test_id).first()
+
+        if not existing_subject:
+            raise ValueError("The student is already deleted from the database")
+
+        stmt = delete(Exam).where(Exam.test_title==test_title).where(Exam.test_id==test_id)
         self.db.execute(stmt)
         self.db.commit()
 
