@@ -56,7 +56,8 @@ def grade_bar_plot(test_name: str, db: ScoreDAL | None):
 
         fig = px.bar(counts_df, x='Score Range', y='Count', title="Scores (Custom Bins)")
 
-        fig.show()
+        return fig.to_html(full_html=True, include_plotlyjs='cdn')
+    return None
 
 
 def grade_bar_plot_by_class(test_name: str, grade_level: str, grades_db: ScoreDAL | None, students_db: StudentDAL | None):

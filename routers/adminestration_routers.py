@@ -17,7 +17,7 @@ def add_student_to_system(student: Student, students_db: StudentDAL = Depends(ge
     try:
         added_student = add_student(student, students_db)
         if added_student:
-            return {"added student": added_student.__str__()}
+            return {"message": "Added student successfully","added student": added_student.__str__()}
         else:
             return {"message": "couldn't add student to the system"}
 
