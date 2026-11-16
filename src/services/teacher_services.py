@@ -1,7 +1,7 @@
 from datetime import datetime
-from database.data_access_layer.score_dal import ScoreDAL
-from database.data_access_layer.student_dal import StudentDAL
-from models.grade import TestGrade
+from src.database.data_access_layer.score_dal import ScoreDAL
+from src.database.data_access_layer.student_dal import StudentDAL
+from src.models.grade import TestGrade
 
 
 def add_student_grade(student_id: int, test_name: str, score: int, comments: str, test_date: datetime, grades_db: ScoreDAL | None, student_db: StudentDAL | None):

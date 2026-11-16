@@ -1,6 +1,6 @@
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from models.subject import Subject
+from src.models.subject import Subject
 
 class SubjectDAL:
     def __init__(self, db: Session):

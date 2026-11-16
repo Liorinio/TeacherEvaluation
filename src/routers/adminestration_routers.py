@@ -1,14 +1,14 @@
 from fastapi import APIRouter, HTTPException, Depends
-from services.administration_services import add_score, add_student, add_subject, add_test,change_student_grade, delete_student, delete_subject, delete_test
-from models.student import Student
-from models.grade import TestGrade
-from models.exam import Exam
-from models.subject import Subject
-from database.data_access_layer.student_dal import StudentDAL
-from database.data_access_layer.score_dal import ScoreDAL
-from database.data_access_layer.subject_dal import SubjectDAL
-from database.data_access_layer.exam_dal import ExamDAL
-from database.db_dependencies import get_exam_dal, get_score_dal, get_student_dal, get_subject_dal
+from src.services.administration_services import add_score, add_student, add_subject, add_test,change_student_grade, delete_student, delete_subject, delete_test
+from src.models.student import Student
+from src.models.grade import TestGrade
+from src.models.exam import Exam
+from src.models.subject import Subject
+from src.database.data_access_layer.student_dal import StudentDAL
+from src.database.data_access_layer.score_dal import ScoreDAL
+from src.database.data_access_layer.subject_dal import SubjectDAL
+from src.database.data_access_layer.exam_dal import ExamDAL
+from src.database.db_dependencies import get_exam_dal, get_score_dal, get_student_dal, get_subject_dal
 
 admin_router = APIRouter()
 

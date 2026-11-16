@@ -1,11 +1,11 @@
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, Depends
-from database.data_access_layer.student_dal import StudentDAL
-from database.data_access_layer.score_dal import ScoreDAL
-from database.data_access_layer.subject_dal import SubjectDAL
-from database.data_access_layer.exam_dal import ExamDAL
-from services.teacher_services import add_student_grade
-from database.db_dependencies import get_exam_dal, get_score_dal, get_student_dal, get_subject_dal
+from src.database.data_access_layer.student_dal import StudentDAL
+from src.database.data_access_layer.score_dal import ScoreDAL
+from src.database.data_access_layer.subject_dal import SubjectDAL
+from src.database.data_access_layer.exam_dal import ExamDAL
+from src.services.teacher_services import add_student_grade
+from src.database.db_dependencies import get_exam_dal, get_score_dal, get_student_dal, get_subject_dal
 
 
 teacher_router = APIRouter()

@@ -1,11 +1,11 @@
-from database.data_access_layer.exam_dal import ExamDAL
-from database.data_access_layer.score_dal import ScoreDAL
-from database.data_access_layer.student_dal import StudentDAL
-from database.data_access_layer.subject_dal import SubjectDAL
-from models.exam import Exam
-from models.grade import TestGrade
-from models.student import Student
-from models.subject import Subject
+from src.database.data_access_layer.exam_dal import ExamDAL
+from src.database.data_access_layer.score_dal import ScoreDAL
+from src.database.data_access_layer.student_dal import StudentDAL
+from src.database.data_access_layer.subject_dal import SubjectDAL
+from src.models.exam import Exam
+from src.models.grade import TestGrade
+from src.models.student import Student
+from src.models.subject import Subject
 import logging
 
 logger = logging.getLogger(__name__)

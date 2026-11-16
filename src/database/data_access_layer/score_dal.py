@@ -1,6 +1,6 @@
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from models.grade import TestGrade
+from src.models.grade import TestGrade
 
 
 class ScoreDAL:

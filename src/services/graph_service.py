@@ -1,8 +1,8 @@
 import pandas as pd
 import plotly.express as px
 import numpy as np
-from database.data_access_layer.score_dal import ScoreDAL
-from database.data_access_layer.student_dal import StudentDAL
+from src.database.data_access_layer.score_dal import ScoreDAL
+from src.database.data_access_layer.student_dal import StudentDAL
 
 
 def failed_vs_passed(name_of_test: str , db: ScoreDAL | None):

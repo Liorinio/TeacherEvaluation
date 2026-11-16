@@ -2,7 +2,7 @@ from datetime import datetime
 from sqlalchemy import DateTime, create_engine, ForeignKey
 from sqlalchemy import String, Integer
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from database.database_connection import engine
+from src.database.database_connection import engine
 
 connection = engine.connect()
 

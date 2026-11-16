@@ -1,6 +1,6 @@
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from models.exam import Exam
+from src.models.exam import Exam
 
 
 class ExamDAL:
