@@ -8,7 +8,7 @@ from src.database.data_access_layer.student_dal import StudentDAL
 from src.database.data_access_layer.score_dal import ScoreDAL
 from src.database.data_access_layer.subject_dal import SubjectDAL
 from src.database.data_access_layer.exam_dal import ExamDAL
-from src.database.db_dependencies import get_exam_dal, get_score_dal, get_student_dal, get_subject_dal
+from src.database.database_dependencies import get_exam_dal, get_score_dal, get_student_dal, get_subject_dal
 
 admin_router = APIRouter()
 

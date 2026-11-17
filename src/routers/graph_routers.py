@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import HTMLResponse
 from src.database.data_access_layer.student_dal import StudentDAL
 from src.database.data_access_layer.score_dal import ScoreDAL
-from src.database.db_dependencies import get_score_dal, get_student_dal
+from src.database.database_dependencies import get_score_dal, get_student_dal
 from services.statistics.graph_service import grade_bar_plot, failed_vs_passed, grade_bar_plot_by_class, student_grade_graph
 
 graph_router = APIRouter()

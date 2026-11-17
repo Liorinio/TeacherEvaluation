@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from src.database.data_access_layer.score_dal import ScoreDAL
-from src.database.db_dependencies import get_score_dal
+from src.database.database_dependencies import get_score_dal
 from services.statistics.stats_service import median_of_a_test, avg_of_a_test, percent_25th_of_a_test, percent_75th_of_a_test
 
 stats_router = APIRouter()
