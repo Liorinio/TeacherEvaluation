@@ -1,5 +1,6 @@
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, Depends
+from services.administration_services import change_student_grade_level
 from src.database.data_access_layer.student_dal import StudentDAL
 from src.database.data_access_layer.score_dal import ScoreDAL
 from src.database.data_access_layer.subject_dal import SubjectDAL
@@ -23,4 +24,19 @@ def add_score_to_student(student_id: int, test_name: str, score: int, comments: 
         raise HTTPException(status_code=400, detail=str(error))
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
+
+teacher_router.patch("")
+def change_grade(student_id: int,new_grade_level: str, students_db: StudentDAL= Depends(get_student_dal)):
+    try:
+        changed_student = change_student_grade_level(student_id, students_db, new_grade_level)
+        if changed_student:
+            return {"message": "Changed grade successfully", "added grade": changed_student.__str__()}
+        else:
+            return {"message": "couldn't change the grade level of the given student"}
+
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error))
+    except Exception as error:
+        raise HTTPException(status_code=400, detail=str(error))
+
 

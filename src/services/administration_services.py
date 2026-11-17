@@ -24,9 +24,16 @@ def delete_student(student_id: int, students_db: StudentDAL | None):
         logger.info("student was deleted")
 
 
-def change_student_grade(student_id: int, students_db: StudentDAL | None, new_grade: str):
+def change_student_grade_level(student_id: int, students_db: StudentDAL | None, new_grade_level: str):
     if students_db is not None:
-        students_db.change_student_grade(student_id, new_grade)
+        returned_student = students_db.change_student_grade_level(student_id, new_grade_level)
+        if returned_student:
+            logger.info("grade changed successfully")
+            return returned_student
+        else:
+            logger.info("Couldn't change grade")
+            return None
+    return None
 
 
 def add_subject(subject: Subject, subject_db: SubjectDAL | None):

@@ -37,12 +37,13 @@ class StudentDAL:
     def get_students_by_class(self, grade_level: str):
         return self.db.query(Student).filter_by(grade_level=grade_level).all()
 
-    def change_student_grade(self, student_id: int, new_grade: str):
+    def change_student_grade_level(self, student_id: int, new_grade_level: str):
         existing_student = self.get_student_by_id(student_id)
 
         if not existing_student:
             raise ValueError("The student isn't in the database")
 
-        existing_student.set_grade_level(new_grade)
+        existing_student.set_grade_level(new_grade_level)
         self.db.commit()
         self.db.refresh(existing_student)
+        return existing_student

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
-from src.services.administration_services import add_score, add_student, add_subject, add_test,change_student_grade, delete_student, delete_subject, delete_test
+from src.services.administration_services import add_score, add_student, add_subject, add_test, delete_student, delete_subject, delete_test
 from src.models.student import Student
 from src.models.grade import TestGrade
 from src.models.exam import Exam
