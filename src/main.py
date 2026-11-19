@@ -25,5 +25,9 @@ app.include_router(teacher_router, prefix="/teacher", tags=["teacher"])
 def heath_check():
     return {"satus: running"}
 
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
+
 if __name__ == "__main__":
     uvicorn.run(app="main:app", host="127.0.0.1", port=8080, reload=True)
