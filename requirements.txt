@@ -8,3 +8,4 @@ plotly
 pandas
 pandas-stubs
 fastapi
+uvicorn
