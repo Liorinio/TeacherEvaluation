@@ -40,7 +40,7 @@ def add_score_to_system(score: TestGrade, score_db: ScoreDAL = Depends(get_score
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@admin_router.post("/add/exams", tags=["admin-add"])
+@admin_router.post("/add/exams")
 def add_exam_to_system(test: Exam, test_db: ExamDAL = Depends(get_exam_dal)):
     try:
         added_exam = add_test(test, test_db)
@@ -55,7 +55,7 @@ def add_exam_to_system(test: Exam, test_db: ExamDAL = Depends(get_exam_dal)):
         raise HTTPException(status_code=400, detail=str(error))
 
 
-@admin_router.post("/add/subjects", tags=["admin-add"])
+@admin_router.post("/add/subjects")
 def add_subject_to_system(subject: Subject, subject_db: SubjectDAL = Depends(get_subject_dal)):
     try:
         added_exam = add_subject(subject, subject_db)
@@ -69,7 +69,7 @@ def add_subject_to_system(subject: Subject, subject_db: SubjectDAL = Depends(get
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@admin_router.delete("/delete/student", tags=["admin-delete"])
+@admin_router.delete("/delete/student")
 def delete_student_from_system(student_id: int, students_db: StudentDAL = Depends(get_student_dal)):
     try:
         added_student = delete_student(student_id, students_db)
@@ -83,7 +83,7 @@ def delete_student_from_system(student_id: int, students_db: StudentDAL = Depend
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@admin_router.delete("/delete/subject", tags=["admin-delete"])
+@admin_router.delete("/delete/subject")
 def delete_subject_from_system(student_id: int, subjects_db: SubjectDAL = Depends(get_subject_dal)):
     try:
         added_subject = delete_subject(student_id, subjects_db)
@@ -98,7 +98,7 @@ def delete_subject_from_system(student_id: int, subjects_db: SubjectDAL = Depend
         raise HTTPException(status_code=400, detail=str(error))
 
 
-@admin_router.delete("/delete/test", tags=["admin-delete"])
+@admin_router.delete("/delete/test")
 def delete_test_from_system(test_id: int, exams_db: ExamDAL = Depends(get_exam_dal)):
     try:
         added_test = delete_test(test_id, exams_db)

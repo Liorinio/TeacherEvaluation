@@ -15,10 +15,10 @@ app = FastAPI(
 
 Base.metadata.create_all(bind=engine)
 
-app.include_router(graph_router)
-app.include_router(admin_router)
-app.include_router(stats_router)
-app.include_router(teacher_router)
+app.include_router(graph_router, prefix="/plots", tags=["plots"])
+app.include_router(admin_router, prefix="/admin", tags=["admin"])
+app.include_router(stats_router, prefix="/stats", tags=["stats"])
+app.include_router(teacher_router, prefix="/teacher", tags=["teacher"])
 
 
 @app.get("/heath_check")

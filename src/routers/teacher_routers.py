@@ -9,7 +9,7 @@ from src.database.database_dependencies import get_score_dal, get_student_dal
 
 teacher_router = APIRouter()
 
-@teacher_router.post("/add/grades", tags=['teacher'])
+@teacher_router.post("/add/grades")
 def add_score_to_student(student_id: int, test_name: str, score: int, comments: str, test_date: datetime, grades_db: ScoreDAL = Depends(get_score_dal), student_db: StudentDAL = Depends(get_student_dal)):
     try:
         added_grade = add_student_grade(student_id, test_name, score, comments, test_date, grades_db, student_db)
@@ -23,7 +23,7 @@ def add_score_to_student(student_id: int, test_name: str, score: int, comments: 
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-teacher_router.patch("")
+@teacher_router.patch("/change/grade")
 def change_grade(student_id: int,new_grade_level: str, students_db: StudentDAL= Depends(get_student_dal)):
     try:
         changed_student = change_student_grade_level(student_id, students_db, new_grade_level)
