@@ -99,9 +99,9 @@ def delete_subject_from_system(student_id: int, subjects_db: SubjectDAL = Depend
 
 
 @admin_router.delete("/delete/test")
-def delete_test_from_system(test_id: int, exams_db: ExamDAL = Depends(get_exam_dal)):
+def delete_test_from_system(test_name: str, test_id: int, exams_db: ExamDAL = Depends(get_exam_dal)):
     try:
-        added_test = delete_test(test_id, exams_db)
+        added_test = delete_test(test_name, test_id, exams_db)
         if added_test:
             return {"deleted test": added_test.__str__()}
         else:

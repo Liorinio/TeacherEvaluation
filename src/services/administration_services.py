@@ -56,9 +56,9 @@ def add_test(test: Exam, test_db: ExamDAL | None):
     return None
 
 
-def delete_test(test_id: int, test_db: ExamDAL | None):
+def delete_test(test_name: str,test_id: int, test_db: ExamDAL | None):
     if test_db is not None:
-        test_db.delete_exam_by_id(test_id)
+        test_db.delete_exam_by_id(test_name, test_id)
         logger.info("exam was deleted")
 
 
