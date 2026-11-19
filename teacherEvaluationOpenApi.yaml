@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: Teacher Evaluation API
+  description: REST API for presenting grades of students' tests and their trends
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /plots/distribution/{test_name}:
+    get:
+      summary: Show distribution of scores
+      description: >
+        Shows the distribution of scores of a single test, getting them by the name of the test
+      operationId: show_grade_distribution
+      parameters:
+          - name: test_name
+            in: path
+            required: true
+            description: The test name that the graph will be created for it
+            schema:
+              type: string
+              example: Math_Exam
+      responses:
+        '200':
+          description: graph created successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+
+  /plots/distribution/{test_name}/{grade_level}:
+    get:
+      summary: Show distribution of scores
+      description: >
+        Shows the distribution of scores of a single test of a single class, getting them by the name of the test
+      operationId: show_grade_distribution_of_class
+      parameters:
+        - name: test_name
+          in: path
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: Math_Exam
+        - name: grade_level
+          in: path
+          required: true
+          description: The grade level (class) that the graph will be created for it
+          schema:
+            type: string
+            example: י"ב1
+
+      responses:
+        '200':
+          description: graph created successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+
+components:
+  schemas:
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: "#/components/schemas/ValidationError"
+
+    ValidationError:
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      properties:
+        loc:
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+        msg:
+          type: string
+        type:
+          type: string
