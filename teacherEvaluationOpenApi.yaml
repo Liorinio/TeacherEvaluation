@@ -266,6 +266,103 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 
+  /teacher/add/grades:
+    get:
+      summary: Add score to student
+      description: >
+        Adds a score to a student, given the student's Id
+      operationId: add_score_to_student
+      tags: [ teacher ]
+      parameters:
+        - name: student_id
+          in: query
+          required: true
+          description: The student's id
+          schema:
+            type: integer
+            example: 307957682
+        - name: test_name
+          in: query
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: "מבחן past simple"
+        - name: score
+          in: query
+          required: true
+          description: The student's score on the test
+          schema:
+            type: integer
+            example: 85
+        - name: comments
+          in: query
+          required: true
+          description: comments of the teacher about the score
+          schema:
+            type: string
+            example: "amazing"
+        - name: test_date
+          in: query
+          required: true
+          description: the date that the test has occurred
+          schema:
+            type: date-time
+            example: "2026-07-21T10:00:00Z"
+      responses:
+        '200':
+          description: 75th percent shows successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /teacher/change/grade:
+    get:
+      summary: change grade of student
+      description: >
+        Changes grade level of a student, given student's Id
+      operationId: add_score_to_student
+      tags: [ teacher ]
+      parameters:
+        - name: student_id
+          in: query
+          required: true
+          description: The student's id
+          schema:
+            type: integer
+            example: 307957682
+        - name: new_grade_level
+          in: query
+          required: true
+          description: The new grade level of a student
+          schema:
+            type: string
+            example: 'י"ב1'
+      responses:
+        '200':
+          description: 75th percent shows successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
 components:
   schemas:
     Error:
