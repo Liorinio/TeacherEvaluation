@@ -7,7 +7,7 @@ from services.statistics.graph_service import grade_bar_plot, failed_vs_passed, 
 
 graph_router = APIRouter()
 
-@graph_router.get("/distribution/{test_name}", response_class=HTMLResponse)
+@graph_router.get("/distribution/{test_name}", response_class=HTMLResponse, status_code=200)
 def show_grade_distribution(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:
         graph_html = grade_bar_plot(test_name, score_dal)
@@ -21,7 +21,7 @@ def show_grade_distribution(test_name: str, score_dal: ScoreDAL = Depends(get_sc
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@graph_router.get("/passed-and-failed", response_class=HTMLResponse)
+@graph_router.get("/passed-and-failed", response_class=HTMLResponse, status_code=200)
 def failed_and_passed_graph(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:
         graph = failed_vs_passed(test_name, score_dal)
@@ -34,7 +34,8 @@ def failed_and_passed_graph(test_name: str, score_dal: ScoreDAL = Depends(get_sc
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@graph_router.get("/distribution/{test_name}/{grade_level}", response_class=HTMLResponse)
+@graph_router.get("/distribution/{test_name}/{grade_level}", response_class=HTMLResponse,
+                  status_code=200)
 def grade_plot_by_class(test_name: str, grade_level: str, grades_db: ScoreDAL = Depends(get_score_dal),
                         students_db: StudentDAL = Depends(get_student_dal)):
     try:
@@ -49,7 +50,7 @@ def grade_plot_by_class(test_name: str, grade_level: str, grades_db: ScoreDAL = 
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@graph_router.get("/student_grade_spread/{student_id}", response_class=HTMLResponse)
+@graph_router.get("/student_grade_spread/{student_id}", response_class=HTMLResponse, status_code=200)
 def student_grades_graph(student_id: int, db: ScoreDAL = Depends(get_score_dal)):
     try:
         returned_graph = student_grade_graph(student_id, db)

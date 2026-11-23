@@ -5,7 +5,7 @@ from services.statistics.stats_service import median_of_a_test, avg_of_a_test, p
 
 stats_router = APIRouter()
 
-@stats_router.get("/avg/{test_name}")
+@stats_router.get("/avg/{test_name}", status_code=200)
 def test_average(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:
         test_avg = avg_of_a_test(test_name, score_dal)
@@ -19,7 +19,7 @@ def test_average(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@stats_router.get("/med/{test_name}")
+@stats_router.get("/med/{test_name}", status_code=200)
 def test_median(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:
         test_med = median_of_a_test(test_name, score_dal)
@@ -34,7 +34,7 @@ def test_median(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
         raise HTTPException(status_code=400, detail=str(error))
 
 
-@stats_router.get("/percent/25th/{test_name}")
+@stats_router.get("/percent/25th/{test_name}", status_code=200)
 def test_percent_25th(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:
         test_25th_percent = percent_25th_of_a_test(test_name, score_dal)
@@ -48,7 +48,7 @@ def test_percent_25th(test_name: str, score_dal: ScoreDAL = Depends(get_score_da
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@stats_router.get("/percent/75th/{test_name}")
+@stats_router.get("/percent/75th/{test_name}", status_code=200)
 def test_percent_75th(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:
         test_25th_percent = percent_75th_of_a_test(test_name, score_dal)
