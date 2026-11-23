@@ -3,8 +3,11 @@ info:
   title: Teacher Evaluation API
   description: REST API for presenting grades of students' tests and their trends
   version: 1.0.0
+
 servers:
-  - url: 'https'
+  - url: https://api.example.com
+    description: API server (replace with your actual host)
+
 paths:
   /plots/distribution/{test_name}:
     get:
@@ -13,16 +16,16 @@ paths:
         Shows the distribution of scores of a single test, getting them by the name of the test
       operationId: show_grade_distribution
       parameters:
-          - name: test_name
-            in: path
-            required: true
-            description: The test name that the graph will be created for it
-            schema:
-              type: string
-              example: Math_Exam
+        - name: test_name
+          in: path
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: Math_Exam
       responses:
         '200':
-          description: graph created successfully
+          description: Graph created successfully
           content:
             text/html:
               schema:
@@ -32,7 +35,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/HTTPValidationError"
+                $ref: '#/components/schemas/HTTPValidationError'
 
   /plots/distribution/{test_name}/{grade_level}:
     get:
@@ -54,11 +57,10 @@ paths:
           description: The grade level (class) that the graph will be created for it
           schema:
             type: string
-            example: י"ב1
-
+            example: 'י"ב1'
       responses:
         '200':
-          description: graph created successfully
+          description: Graph created successfully
           content:
             text/html:
               schema:
@@ -68,32 +70,72 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/HTTPValidationError"
+                $ref: '#/components/schemas/HTTPValidationError'
 
 components:
   schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: Note not found
+        details:
+          type: array
+          items:
+            type: string
+          example:
+            - "title: must not be blank"
+            - "url: must be a valid URI"
+
     HTTPValidationError:
       type: object
       properties:
         detail:
           type: array
           items:
-            $ref: "#/components/schemas/ValidationError"
+            $ref: '#/components/schemas/Error'
+
+  responses:
+    NotFound:
+      description: The requested note does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Note not found
+
+    BadRequest:
+      description: Request payload failed validation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Validation error
+            details:
+              - "title: must not be blank"
+              - "url: must be a valid URI"
 
     ValidationError:
-      type: object
-      required:
-        - loc
-        - msg
-        - type
-      properties:
-        loc:
-          type: array
-          items:
-            oneOf:
-              - type: string
-              - type: integer
-        msg:
-          type: string
-        type:
-          type: string
+      description: Request payload failed validation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 422
+            message: Validation error
+            details:
+              - "text: Input should be a valid string"
+              - "list: Input should be a valid list"
+              - "url: Input should be a valid URL, relative URL without a base"
