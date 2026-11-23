@@ -12,7 +12,7 @@ from src.database.database_dependencies import get_exam_dal, get_score_dal, get_
 
 admin_router = APIRouter()
 
-@admin_router.post("/add/students", tags=["admin-add"], status_code=201)
+@admin_router.post("/add/students", status_code=201)
 def add_student_to_system(student: Student, students_db: StudentDAL = Depends(get_student_dal)):
     try:
         added_student = add_student(student, students_db)
@@ -26,7 +26,7 @@ def add_student_to_system(student: Student, students_db: StudentDAL = Depends(ge
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@admin_router.post("/add/scores", tags=["admin-add"], status_code=201)
+@admin_router.post("/add/scores", status_code=201)
 def add_score_to_system(score: TestGrade, score_db: ScoreDAL = Depends(get_score_dal)):
     try:
         added_score = add_score(score, score_db)

@@ -15,6 +15,7 @@ paths:
       description: >
         Shows the distribution of scores of a single test, getting them by the name of the test
       operationId: show_grade_distribution
+      tags: [plots]
       parameters:
         - name: test_name
           in: path
@@ -45,6 +46,7 @@ paths:
       description: >
         Shows the distribution of scores of a single test of a single class, getting them by the name of the test
       operationId: show_grade_distribution_of_class
+      tags: [plots]
       parameters:
         - name: test_name
           in: path
@@ -82,6 +84,7 @@ paths:
       description: >
         Shows the distribution of scores of a single student
       operationId: student_grades_graph
+      tags: [plots]
       parameters:
         - name: student_id
           in: path
@@ -112,6 +115,7 @@ paths:
       description: >
         Shows the distribution of scores of a single student
       operationId: student_grades_graph
+      tags: [plots]
       parameters:
         - name: student_id
           in: query
@@ -142,6 +146,7 @@ paths:
       description: >
         Shows the average score of a single test
       operationId: test_average
+      tags: [stats]
       parameters:
         - name: test_name
           in: path
@@ -172,6 +177,7 @@ paths:
       description: >
         Shows the median score of a single test
       operationId: test_median
+      tags: [stats]
       parameters:
         - name: test_name
           in: path
@@ -203,6 +209,7 @@ paths:
         Shows the 25th percent score of a single test,
         which means that 25% of the scores are lower than it and 75% of the scores are above it
       operationId: test_percent_25th
+      tags: [stats]
       parameters:
         - name: test_name
           in: path
@@ -234,6 +241,7 @@ paths:
         Shows the 75th percent score of a single test,
         which means that 75% of the scores are lower than it and 25% of the scores are above it
       operationId: test_percent_75th
+      tags: [stats]
       parameters:
         - name: test_name
           in: path

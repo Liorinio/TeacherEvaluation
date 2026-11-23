@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
+from starlette.responses import RedirectResponse
 
 from database.database_connection import engine
 from database.tables import Base
