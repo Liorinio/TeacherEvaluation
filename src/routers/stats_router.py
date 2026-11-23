@@ -19,20 +19,6 @@ def test_average(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     except Exception as error:
         raise HTTPException(status_code=400, detail=str(error))
 
-@stats_router.get("/avg/{test_name}")
-def test_median(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
-    try:
-        test_med = median_of_a_test(test_name, score_dal)
-        if test_med:
-            return {"message": f"Calculates average successfully", "median": test_med}
-        else:
-            return {"message": f"Couldn't calculates average for the following test: {test_name}"}
-
-    except ValueError as error:
-        raise HTTPException(status_code=400, detail=str(error))
-    except Exception as error:
-        raise HTTPException(status_code=400, detail=str(error))
-
 @stats_router.get("/med/{test_name}")
 def test_median(test_name: str, score_dal: ScoreDAL = Depends(get_score_dal)):
     try:

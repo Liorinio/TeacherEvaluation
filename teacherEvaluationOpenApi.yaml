@@ -76,6 +76,188 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 
+  /plots/student_grade_spread/{student_id}:
+    get:
+      summary: Show scores of a single student
+      description: >
+        Shows the distribution of scores of a single student
+      operationId: student_grades_graph
+      parameters:
+        - name: student_id
+          in: path
+          required: true
+          description: The id of the student in questin, for getting its scores
+          schema:
+            type: integer
+            example: 307960421
+      responses:
+        '200':
+          description: Graph created successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /plots/passed-and-failed:
+    get:
+      summary: Show amounts of student who passed and failed a certain test
+      description: >
+        Shows the distribution of scores of a single student
+      operationId: student_grades_graph
+      parameters:
+        - name: student_id
+          in: query
+          required: true
+          description: The id of the student in questin, for getting its scores
+          schema:
+            type: integer
+            example: 307960421
+      responses:
+        '200':
+          description: Graph created successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /stats/avg/{test_name}:
+    get:
+      summary: Show average of a test
+      description: >
+        Shows the average score of a single test
+      operationId: test_average
+      parameters:
+        - name: test_name
+          in: path
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: "מבחן past simple"
+      responses:
+        '200':
+          description: Average shows successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /stats/med/{test_name}:
+    get:
+      summary: Show median of a test
+      description: >
+        Shows the median score of a single test
+      operationId: test_median
+      parameters:
+        - name: test_name
+          in: path
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: "מבחן past simple"
+      responses:
+        '200':
+          description: Median shows successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /stats/percent/25th/{test_name}:
+    get:
+      summary: Show 25th percent of a test
+      description: >
+        Shows the 25th percent score of a single test,
+        which means that 25% of the scores are lower than it and 75% of the scores are above it
+      operationId: test_percent_25th
+      parameters:
+        - name: test_name
+          in: path
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: "מבחן past simple"
+      responses:
+        '200':
+          description: 25th percent shows successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /stats/percent/75th/{test_name}:
+    get:
+      summary: Show 75th percent of a test
+      description: >
+        Shows the 75th percent score of a single test,
+        which means that 75% of the scores are lower than it and 25% of the scores are above it
+      operationId: test_percent_75th
+      parameters:
+        - name: test_name
+          in: path
+          required: true
+          description: The test name that the graph will be created for it
+          schema:
+            type: string
+            example: "מבחן past simple"
+      responses:
+        '200':
+          description: 75th percent shows successfully
+          content:
+            text/html:
+              schema:
+                type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
 components:
   schemas:
     Error:
