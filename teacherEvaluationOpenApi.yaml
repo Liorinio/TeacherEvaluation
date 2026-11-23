@@ -36,6 +36,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 
   /plots/distribution/{test_name}/{grade_level}:
     get:
@@ -71,6 +73,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
 
 components:
   schemas:
@@ -91,8 +95,7 @@ components:
           items:
             type: string
           example:
-            - "title: must not be blank"
-            - "url: must be a valid URI"
+            - "Couldn't find the student with the given ID"
 
     HTTPValidationError:
       type: object
@@ -111,7 +114,7 @@ components:
             $ref: '#/components/schemas/Error'
           example:
             code: 404
-            message: Note not found
+            message: "Student not found"
 
     BadRequest:
       description: Request payload failed validation
@@ -123,8 +126,7 @@ components:
             code: 400
             message: Validation error
             details:
-              - "title: must not be blank"
-              - "url: must be a valid URI"
+               - "Couldn't find the student with the given ID"
 
     ValidationError:
       description: Request payload failed validation
@@ -136,6 +138,5 @@ components:
             code: 422
             message: Validation error
             details:
-              - "text: Input should be a valid string"
-              - "list: Input should be a valid list"
-              - "url: Input should be a valid URL, relative URL without a base"
+              - "Student id: must be an integer"
+              - "Student name: must be a string"
